@@ -48,5 +48,5 @@ pipeline {
 //                 ], contextPath: '/', war: '**/*.war'
 //             }
 //         }
-//     }
-// }
+      }
+  }
