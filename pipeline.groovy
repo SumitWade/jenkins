@@ -30,17 +30,23 @@ pipeline {
             }
         }
 
-        stage('deploy') {
+         stage('artifact-upload') {
             steps {
-                deploy adapters: [
-                    tomcat9(
-                        alternativeDeploymentContext: '', 
-                        credentialsId: 'tomcat-cred', 
-                        path: '', 
-                        url: 'http://35.179.105.163:8080/'
-                    )
-                ], contextPath: '/', war: '**/*.war'
-            }
+               sh 'aws s3 cp target/studentapp-2.2-SNAPSHOT.war  s3://my-terra-bucket0099912'
+           }
         }
-    }
-}
+
+//         stage('deploy') {
+//             steps {
+//                 deploy adapters: [
+//                     tomcat9(
+//                         alternativeDeploymentContext: '', 
+//                         credentialsId: 'tomcat-cred', 
+//                         path: '', 
+//                         url: 'http://35.179.105.163:8080/'
+//                     )
+//                 ], contextPath: '/', war: '**/*.war'
+//             }
+//         }
+//     }
+// }
